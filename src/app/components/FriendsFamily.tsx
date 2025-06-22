@@ -2,7 +2,7 @@
 
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Heart, X, Sparkles, Mail } from 'lucide-react';
+import { Heart, X } from 'lucide-react';
 import { loveMessageOperations } from '../../../firebase/smsService';
 import { getFriendsFamily } from '../../../firebase/getFriendsFamily';
 import { Timestamp } from 'firebase/firestore';
@@ -116,7 +116,7 @@ useEffect(() => {
   const playCelebrationSound = () => {
     setPlaySound(true);
     console.log('🎉 CELEBRATION SOUND! 🎉');
-    
+    console.log(playSound);
     // Play the audio file
     const audio = new Audio('/celebration.mp3'); // Replace 'celebration.mp3' with your actual file name
     audio.play().catch(error => {
