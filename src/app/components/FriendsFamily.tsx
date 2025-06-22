@@ -2,7 +2,7 @@
 
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Heart, X } from 'lucide-react';
+import { Heart, X, Sparkles, Mail } from 'lucide-react';
 import { loveMessageOperations } from '../../../firebase/smsService';
 import { getFriendsFamily } from '../../../firebase/getFriendsFamily';
 import { Timestamp } from 'firebase/firestore';
@@ -119,7 +119,6 @@ useEffect(() => {
     
     // Play the audio file
     const audio = new Audio('/celebration.mp3'); // Replace 'celebration.mp3' with your actual file name
-    console.log(playSound);
     audio.play().catch(error => {
       console.error('Error playing sound:', error);
     });
@@ -284,7 +283,7 @@ useEffect(() => {
             }
           }}
         >
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative overflow-hidden transform transition-all duration-300 scale-125">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative transform transition-all duration-300">
             
             {/* Confetti Animation */}
             {showConfetti && confetti.map((piece) => (
@@ -312,7 +311,7 @@ useEffect(() => {
 
             {/* Step 1: Introduction */}
             {step === 'intro' && (
-              <div className="text-center">
+              <div className="text-center p-2">
                 <div className="text-6xl mb-4">🫂</div>
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">Hey there!</h2>
                 <p className="text-gray-600 mb-8 leading-relaxed justify-center text-center">
@@ -332,7 +331,7 @@ useEffect(() => {
 
             {/* Step 2: Name Input */}
             {step === 'name' && (
-              <div className="text-center">
+              <div className="text-center p-2">
                 <div className="text-4xl mb-4">🌟</div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Just need your name real quick</h2>
                 <p className="text-gray-600 mb-6">Had to do a lil something to appreciate all you&apos;ve been to me.</p>
@@ -379,7 +378,7 @@ useEffect(() => {
 
             {/* Step 3: OTP Input */}
             {step === 'otp' && currentPerson && (
-              <div className="text-center font-[Book_Antiqua]">
+              <div className="text-center font-[Book_Antiqua] p-2">
                 <div className="text-4xl mb-4">📱</div>
                 <h2 className="text-2xl font-bold text-black mb-4">Almost there, {currentPerson.name}!</h2>
                 <p className="text-gray-600 mb-2">I've sent a verification code to:</p>
@@ -421,25 +420,25 @@ useEffect(() => {
             {/* Step 4: Love Letter - Minimal Version */}
             {step === 'letter' && currentPerson && (
               <div className="text-center">
-                <div className="mb-6 relative">
-                  <div className="text-4xl mb-4">💌</div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                <div className="mb-4">
+                  <div className="text-3xl mb-3">💌</div>
+                  <h2 className="text-xl font-bold text-gray-800 mb-4">
                     Dear {currentPerson.name},
                   </h2>
                 </div>
                 
-                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-200 mb-6">
-                  <p className="text-gray-700 text-lg leading-relaxed">
+                <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-6 max-h-60 overflow-y-auto">
+                  <p className="text-gray-700 text-base leading-relaxed text-left whitespace-pre-wrap">
                     {currentPerson.personalMessage}
                   </p>
                   <div className="mt-4 text-right">
-                    <p className="text-gray-600 font-medium">With love 💕</p>
+                    <p className="text-gray-600 font-medium text-sm">With love 💕</p>
                   </div>
                 </div>
                 
                 <button
                   onClick={() => setStep('feedback')}
-                  className="bg-pink-500 hover:bg-purple-300 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
                 >
                   Hope you liked it, got time for feedback?
                 </button>
@@ -448,7 +447,7 @@ useEffect(() => {
 
             {/* Step 5: Feedback */}
             {step === 'feedback' && currentPerson && (
-              <div className="text-center">
+              <div className="text-center p-2">
                 <div className="text-4xl mb-4">💭</div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Your thoughts?</h2>
                 <p className="text-gray-600 mb-6">I'd love to hear what you think!</p>
