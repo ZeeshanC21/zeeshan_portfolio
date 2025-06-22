@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+
+
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Heart, X, Sparkles, Mail } from 'lucide-react';
@@ -200,7 +203,7 @@ const FloatingLoveButton: React.FC = () => {
   return (
     <div className="relative">
       {/* Debug Info */}
-      <div className="fixed top-4 left-4 bg-black text-white p-2 rounded text-xs z-50 opacity-75">
+      {/* <div className="fixed top-4 left-4 bg-black text-white p-2 rounded text-xs z-50 opacity-75">
         Button Status: {buttonClicked ? 'CLICKED!' : 'Waiting for click...'}
         <br />
         Modal: {showModal ? 'Open' : 'Closed'}
@@ -208,7 +211,7 @@ const FloatingLoveButton: React.FC = () => {
         Step: {step}
         <br />
         Loaded: {lovedOnes.length} people
-      </div>
+      </div> */}
 
       {/* Floating Button - Fixed positioning with higher z-index */}
       <button

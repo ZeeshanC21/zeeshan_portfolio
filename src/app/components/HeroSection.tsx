@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 "use client"
 import NavbarSection from "./NavbarSection";
 import { useState, useEffect } from "react";

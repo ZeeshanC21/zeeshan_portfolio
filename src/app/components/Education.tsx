@@ -1,5 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
+
+
 "use client";
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 const educationData = [
   {
     label: "School",
@@ -94,7 +98,7 @@ function DesktopSection() {
               
               {/* Circular Image */}
               <div className="flex justify-center mb-6 relative overflow-hidden rounded-full">
-                <img
+                <Image
                   src={item.imgSrc}
                   alt={item.label}
                   className="w-[220px] h-[220px] rounded-full object-[center_35%] shadow-lg transition-transform duration-500 group-hover:scale-110"
@@ -207,7 +211,7 @@ function MobileSection() {
             {/* Image at top of each card */}
             <div className="flex justify-center mb-6">
               <div className="w-80 h-80 rounded-full overflow-hidden shadow-xl border-4 border-gray-600 hover:scale-105 transition-transform duration-300">
-                <img
+                <Image
                   src={education.imgSrc}
                   alt={education.label}
                   className="w-full h-full object-cover hover:blur-[2px] transition-all duration-300"

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 export default function ContactSection() {
   const socialLinks = [
   {
@@ -106,7 +108,7 @@ export default function ContactSection() {
         Connect With Me
       </h2>
       <p className="text-gray-300 text-lg mb-8">
-        Let's build something amazing together. Reach out through any of these platforms.
+        Let&apos;s build something amazing together. Reach out through any of these platforms.
       </p>
       
       {/* Social Icons */}

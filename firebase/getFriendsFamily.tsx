@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 import { collection , getDocs, Timestamp } from "firebase/firestore";
 import { db } from "./config";
 

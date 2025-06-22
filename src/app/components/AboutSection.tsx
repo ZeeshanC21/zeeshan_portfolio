@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 export default function AboutSection() {
   return (
     <section
@@ -9,7 +11,7 @@ export default function AboutSection() {
           About Me
         </h2>
         <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua]">
-          I'm{" "}
+          I&apos;m{" "}
           <span className="font-semibold text-blue-300">Zeeshan Charolia</span>,
           a Computer Science undergraduate at NMIMS University with a
           deep-rooted passion for building innovative digital experiences. My
@@ -27,7 +29,7 @@ export default function AboutSection() {
         <br />
         <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua]">
           I thrive on challenges and bring a mindset of continuous learning,
-          creativity, and precision to everything I build. Whether it's solving
+          creativity, and precision to everything I build. Whether it&apos;s solving
           bugs or brainstorming product ideas, I approach each step with
           intention and curiosity. My goal is to lead tech-driven projects that
           enhance collaboration, streamline processes, and contribute to a
@@ -35,7 +37,7 @@ export default function AboutSection() {
         </p>
         <br />
         <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua]">
-          Outside the world of code, I'm a sports enthusiast and love exploring
+          Outside the world of code, I&apos;m a sports enthusiast and love exploring
           new places. These passions keep me grounded, inspired, and always
           ready to bring fresh energy into whatever I create.
         </p>

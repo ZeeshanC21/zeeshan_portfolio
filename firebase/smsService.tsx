@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+
+
 // firebase/smsService.ts
 import {
   collection,
