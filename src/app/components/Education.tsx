@@ -98,6 +98,8 @@ function DesktopSection() {
                 <Image
                   src={item.imgSrc}
                   alt={item.label}
+                  width={220}
+                  height={220}
                   className="w-[220px] h-[220px] rounded-full object-[center_35%] shadow-lg transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
@@ -211,6 +213,8 @@ function MobileSection() {
                 <Image
                   src={education.imgSrc}
                   alt={education.label}
+                  width={220}
+                  height={220}
                   className="w-full h-full object-cover hover:blur-[2px] transition-all duration-300"
                 />
               </div>

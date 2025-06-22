@@ -24,7 +24,9 @@ export default function HeroSection() {
       <Image
         src="/zeeee.jpg"
         alt="Zeeshan Charolia"
+        fill
         className="absolute inset-0 object-cover object-[center_35%] w-full h-full"
+        priority
       />
 
       {/* Overlay */}

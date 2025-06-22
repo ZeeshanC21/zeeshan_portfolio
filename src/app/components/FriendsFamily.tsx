@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 
-
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Heart, X, Sparkles, Mail } from 'lucide-react';
@@ -18,6 +17,7 @@ interface LovedOnes {
   firstViewedAt: Timestamp | null;
   lastViewedAt: Timestamp | null;
   viewCount?: number;
+  feedback?: string;
 }
 
 interface Confetti {
@@ -29,13 +29,14 @@ interface Confetti {
   velocity: { x: number; y: number };
 }
 
-type Step = 'intro' | 'name' | 'otp' | 'letter';
+type Step = 'intro' | 'name' | 'otp' | 'letter' | 'feedback';
 
 const FloatingLoveButton: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [step, setStep] = useState<Step>('intro');
   const [name, setName] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
+  const [feedback, setFeedback] = useState<string>('');
   const [currentPerson, setCurrentPerson] = useState<LovedOnes | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
@@ -64,7 +65,6 @@ const FloatingLoveButton: React.FC = () => {
 useEffect(() => {
   console.log('Updated loved ones:', lovedOnes);
 }, [lovedOnes]);
-
 
   // Add reCAPTCHA container to DOM when modal opens
   useEffect(() => {
@@ -196,11 +196,38 @@ useEffect(() => {
     setLoading(false);
   };
 
+  // Handle feedback submission
+  const handleFeedbackSubmit = async () => {
+    if (!feedback.trim() || !currentPerson) return;
+    
+    setLoading(true);
+    setError('');
+    
+    try {
+      // Update the person's document with feedback
+      await loveMessageOperations.updateFeedback(currentPerson.id, feedback.trim());
+      
+      console.log('Feedback submitted successfully!');
+      
+      // Show success and close modal
+      setTimeout(() => {
+        resetModal();
+      }, 1500);
+      
+    } catch (err: unknown) {
+      console.error('Error submitting feedback:', err);
+      setError('Failed to submit feedback. Please try again.');
+    }
+    
+    setLoading(false);
+  };
+
   const resetModal = () => {
     setShowModal(false);
     setStep('intro');
     setName('');
     setOtp('');
+    setFeedback('');
     setCurrentPerson(null);
     setError('');
     setShowConfetti(false);
@@ -211,18 +238,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="relative">
-      {/* Debug Info */}
-      {/* <div className="fixed top-4 left-4 bg-black text-white p-2 rounded text-xs z-50 opacity-75">
-        Button Status: {buttonClicked ? 'CLICKED!' : 'Waiting for click...'}
-        <br />
-        Modal: {showModal ? 'Open' : 'Closed'}
-        <br />
-        Step: {step}
-        <br />
-        Loaded: {lovedOnes.length} people
-      </div> */}
-
+    <div className="relative font-[Book_Antiqua]">
       {/* Floating Button - Fixed positioning with higher z-index */}
       <button
         onClick={handleButtonClick}
@@ -252,7 +268,7 @@ useEffect(() => {
       {/* Modal */}
       {showModal && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 bg-opacity-60 flex items-center justify-center p-4"
           style={{ zIndex: 10000 }}
           onClick={(e) => {
             if (e.target === e.currentTarget) {
@@ -260,7 +276,7 @@ useEffect(() => {
             }
           }}
         >
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative overflow-hidden transform transition-all duration-300 scale-100">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative overflow-hidden transform transition-all duration-300 scale-125">
             
             {/* Confetti Animation */}
             {showConfetti && confetti.map((piece) => (
@@ -289,18 +305,19 @@ useEffect(() => {
             {/* Step 1: Introduction */}
             {step === 'intro' && (
               <div className="text-center">
-                <div className="text-6xl mb-4">💕</div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Hey Beautiful Soul!</h2>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  I've written something special just for you. It's a little secret message 
-                  that shows how much you mean to me. Ready to discover it?
+                <div className="text-6xl mb-4">🫂</div>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">Hey there!</h2>
+                <p className="text-gray-600 mb-8 leading-relaxed justify-center text-center">
+                  I&apos;ve put together something a little personal<br></br>
+                  Just a small touch that shows what you mean to me.<br></br>
+                  Feel free to check it out when you&apos;ve got a sec!
                 </p>
                 
                 <button
                   onClick={() => setStep('name')}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+                  className="bg-gradient-to-t from-black/80 to-blue-300 hover:bg-blue-300 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                 >
-                  Let's Go! ✨
+                  Click Here !
                 </button>
               </div>
             )}
@@ -309,15 +326,15 @@ useEffect(() => {
             {step === 'name' && (
               <div className="text-center">
                 <div className="text-4xl mb-4">🌟</div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Who are you?</h2>
-                <p className="text-gray-600 mb-6">Tell me your name to unlock your personal message!</p>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Just need your name real quick</h2>
+                <p className="text-gray-600 mb-6">Had to do a lil something to appreciate all you&apos;ve been to me.</p>
                 
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your beautiful name"
-                  className="w-full p-4 border-2 border-pink-200 rounded-xl focus:border-pink-500 focus:outline-none text-center text-lg mb-4"
+                  placeholder="Your name"
+                  className="w-full p-4 border-2 border-pink-200 rounded-xl focus:border-pink-500 focus:outline-none text-center text-lg mb-4 text-black"
                   disabled={loading}
                   onKeyPress={(e) => e.key === 'Enter' && handleNameSubmit()}
                 />
@@ -354,9 +371,9 @@ useEffect(() => {
 
             {/* Step 3: OTP Input */}
             {step === 'otp' && currentPerson && (
-              <div className="text-center">
+              <div className="text-center font-[Book_Antiqua]">
                 <div className="text-4xl mb-4">📱</div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Almost there, {currentPerson.name}!</h2>
+                <h2 className="text-2xl font-bold text-black mb-4">Almost there, {currentPerson.name}!</h2>
                 <p className="text-gray-600 mb-2">I've sent a verification code to:</p>
                 <p className="text-pink-600 font-semibold mb-4">{currentPerson.phoneNumber}</p>
                 <p className="text-sm text-gray-500 mb-6">Check your SMS and enter the 6-digit code!</p>
@@ -367,7 +384,7 @@ useEffect(() => {
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
                   placeholder="000000"
                   maxLength={6}
-                  className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none text-center text-3xl tracking-wider mb-4 font-mono"
+                  className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none text-center text-3xl tracking-wider mb-4 font-mono text-black"
                   disabled={loading}
                   onKeyPress={(e) => e.key === 'Enter' && handleOTPSubmit()}
                 />
@@ -393,48 +410,75 @@ useEffect(() => {
               </div>
             )}
 
-            {/* Step 4: Love Letter */}
+            {/* Step 4: Love Letter - Minimal Version */}
             {step === 'letter' && currentPerson && (
               <div className="text-center">
                 <div className="mb-6 relative">
-                  <div className="text-8xl mb-4 animate-bounce">🎉</div>
-                  {playSound && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-4xl animate-ping">🎊</div>
-                    </div>
-                  )}
-                  <h2 className="text-3xl font-bold text-purple-800 mb-2">
+                  <div className="text-4xl mb-4">💌</div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
                     Dear {currentPerson.name},
                   </h2>
-                  <div className="flex justify-center space-x-2 text-2xl mb-4">
-                    <Mail className="text-pink-500" />
-                    <Sparkles className="text-yellow-500 animate-spin" />
-                    <Heart className="text-red-500 animate-pulse" />
-                  </div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-6 rounded-2xl border-2 border-pink-200 mb-6 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"></div>
-                  <p className="text-gray-700 text-lg leading-relaxed font-medium">
+                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-200 mb-6">
+                  <p className="text-gray-700 text-lg leading-relaxed">
                     {currentPerson.personalMessage}
                   </p>
                   <div className="mt-4 text-right">
-                    <p className="text-pink-600 font-semibold">With all my love 💕</p>
+                    <p className="text-gray-600 font-medium">With love 💕</p>
                   </div>
                 </div>
                 
-                <div className="flex justify-center space-x-3 text-4xl mb-6">
-                  <span className="animate-pulse">💖</span>
-                  <span className="animate-pulse" style={{animationDelay: '0.5s'}}>✨</span>
-                  <span className="animate-pulse" style={{animationDelay: '1s'}}>🌟</span>
-                  <span className="animate-pulse" style={{animationDelay: '1.5s'}}>💝</span>
+                <button
+                  onClick={() => setStep('feedback')}
+                  className="bg-black hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-300 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm"
+                >
+                  Hope you liked it, got time for feedback?
+                </button>
+              </div>
+            )}
+
+            {/* Step 5: Feedback */}
+            {step === 'feedback' && currentPerson && (
+              <div className="text-center">
+                <div className="text-4xl mb-4">💭</div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Your thoughts?</h2>
+                <p className="text-gray-600 mb-6">I'd love to hear what you think!</p>
+                
+                <textarea
+                  value={feedback}
+                  onChange={(e) => setFeedback(e.target.value)}
+                  placeholder="Share your thoughts here..."
+                  rows={4}
+                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none text-gray-700 resize-none mb-4"
+                  disabled={loading}
+                />
+                
+                {error && (
+                  <p className="text-red-500 text-sm mb-4">{error}</p>
+                )}
+                
+                <div className="flex space-x-3">
+                  <button
+                    onClick={() => setStep('letter')}
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 rounded-xl transition-colors"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    onClick={handleFeedbackSubmit}
+                    disabled={loading || !feedback.trim()}
+                    className="flex-1 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white font-semibold py-3 rounded-xl transition-colors"
+                  >
+                    {loading ? 'Sending...' : 'Send Feedback'}
+                  </button>
                 </div>
                 
                 <button
                   onClick={resetModal}
-                  className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 text-lg shadow-lg transform hover:scale-105"
+                  className="w-full mt-3 text-gray-500 hover:text-gray-700 text-sm underline"
                 >
-                  This made my day! 😊✨
+                  Skip feedback
                 </button>
               </div>
             )}

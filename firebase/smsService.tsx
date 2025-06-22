@@ -202,6 +202,23 @@ export const loveMessageOperations = {
     }
   },
 
+  // Add this to your smsService.js file
+  updateFeedback: async (personId:string, feedbackText:string) => {
+    try {
+      const personRef = doc(db, 'lovedones', personId);
+      
+      await updateDoc(personRef, {
+        feedback: feedbackText
+      });
+      
+      console.log('Feedback updated successfully for person:', personId);
+      return { success: true };
+    } catch (error) {
+      console.error('Error updating feedback:', error);
+      throw error;
+    }
+  },
+
   clearRecaptcha: (): void => {
     if (window.recaptchaVerifier) {
       window.recaptchaVerifier.clear();

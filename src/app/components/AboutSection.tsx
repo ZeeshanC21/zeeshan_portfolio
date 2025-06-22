@@ -8,7 +8,7 @@ export default function AboutSection() {
         <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white font-[Book_Antiqua]">
           About Me
         </h2>
-        <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua]">
+        <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua] text-justify">
           I&apos;m{" "}
           <span className="font-semibold text-blue-300">Zeeshan Charolia</span>,
           a Computer Science undergraduate at NMIMS University with a
@@ -25,7 +25,7 @@ export default function AboutSection() {
           that make a difference.
         </p>
         <br />
-        <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua]">
+        <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua] text-justify">
           I thrive on challenges and bring a mindset of continuous learning,
           creativity, and precision to everything I build. Whether it&apos;s solving
           bugs or brainstorming product ideas, I approach each step with
@@ -34,7 +34,7 @@ export default function AboutSection() {
           smarter, more connected world.
         </p>
         <br />
-        <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua]">
+        <p className="text-lg sm:text-xl leading-relaxed font-[Book_Antiqua] text-justify">
           Outside the world of code, I&apos;m a sports enthusiast and love exploring
           new places. These passions keep me grounded, inspired, and always
           ready to bring fresh energy into whatever I create.
