@@ -53,6 +53,7 @@ const FloatingLoveButton: React.FC = () => {
         const data = await getFriendsFamily();
         setLovedOnes(data);
         console.log('Loaded loved ones:', data);
+        console.log("Loaded loved ones: ",lovedOnes);
       } catch (error) {
         console.error('Error loading loved ones:', error);
       }
@@ -146,10 +147,14 @@ const FloatingLoveButton: React.FC = () => {
       } else {
         setError('Hmm, I don\'t think I have a special message for that name. Try again! 🤔');
       }
-    } catch (err: any) {
-      console.error('Error sending OTP:', err);
-      setError(`Failed to send verification code: ${err.message}`);
-    }
+    }catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(`Failed to send verification code: ${err.message}`);
+      } else {
+        setError('An unexpected error occurred.');
+      }
+}
+
     
     setLoading(false);
   };
@@ -216,8 +221,8 @@ const FloatingLoveButton: React.FC = () => {
       {/* Floating Button - Fixed positioning with higher z-index */}
       <button
         onClick={handleButtonClick}
-        onMouseDown={(e) => console.log('Mouse down on button')}
-        onMouseUp={(e) => console.log('Mouse up on button')}
+        onMouseDown={() => console.log('Mouse down on button')}
+        onMouseUp={() => console.log('Mouse up on button')}
         className={`
           fixed bottom-6 left-6 w-16 h-16 
           bg-gradient-to-r from-pink-500 to-red-500 
