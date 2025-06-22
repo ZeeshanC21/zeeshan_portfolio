@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { Heart, X, Sparkles, Mail } from 'lucide-react';
 import { loveMessageOperations } from '../../../firebase/smsService';
 import { getFriendsFamily } from '../../../firebase/getFriendsFamily';
+import { Timestamp } from 'firebase/firestore';
 
 // Types matching your interface
 interface LovedOnes {
@@ -14,8 +15,8 @@ interface LovedOnes {
   phoneNumber: string;
   personalMessage: string;
   totalAttempts: number;
-  firstViewedAt: any;
-  lastViewedAt: any;
+  firstViewedAt: Timestamp | null;
+  lastViewedAt: Timestamp | null;
   viewCount?: number;
 }
 
@@ -48,18 +49,22 @@ const FloatingLoveButton: React.FC = () => {
 
   // Load loved ones on component mount
   useEffect(() => {
-    const loadLovedOnes = async () => {
-      try {
-        const data = await getFriendsFamily();
-        setLovedOnes(data);
-        console.log('Loaded loved ones:', data);
-        console.log("Loaded loved ones: ",lovedOnes);
-      } catch (error) {
-        console.error('Error loading loved ones:', error);
-      }
-    };
-    loadLovedOnes();
-  }, []);
+  const loadLovedOnes = async () => {
+    try {
+      const data = await getFriendsFamily();
+      setLovedOnes(data);
+      console.log('Loaded loved ones:', data);
+    } catch (error) {
+      console.error('Error loading loved ones:', error);
+    }
+  };
+  loadLovedOnes();
+}, []);
+
+useEffect(() => {
+  console.log('Updated loved ones:', lovedOnes);
+}, [lovedOnes]);
+
 
   // Add reCAPTCHA container to DOM when modal opens
   useEffect(() => {
@@ -183,9 +188,9 @@ const FloatingLoveButton: React.FC = () => {
         setError('Oops! Wrong code. Check your messages and try again! 🔄');
         setOtp('');
       }
-    } catch (err: any) {
+    } catch (err:unknown) {
       console.error('Error verifying OTP:', err);
-      setError(`Verification failed: ${err.message}`);
+      setError(`Verification failed due to unknown error`);
     }
     
     setLoading(false);

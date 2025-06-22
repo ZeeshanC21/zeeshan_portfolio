@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 "use client";
 import { useEffect, useState } from "react";
 
@@ -22,6 +20,7 @@ export default function MotivationBar() {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setMobile(mobile);
+      console.log(isMobile);
       // Set visibility based on device type
       if (!mobile) {
         setIsVisible(true); // Show by default on desktop

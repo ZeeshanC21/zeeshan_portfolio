@@ -1,8 +1,6 @@
-/* eslint-disable react/no-unescaped-entities */
-
 "use client"
-import NavbarSection from "./NavbarSection";
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 export default function HeroSection() {
 
   const [timeOfDay,setTimeOfDay]=useState("");
@@ -23,7 +21,7 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen" id="Home">
       {/* <NavbarSection /> */}
-      <img
+      <Image
         src="/zeeee.jpg"
         alt="Zeeshan Charolia"
         className="absolute inset-0 object-cover object-[center_35%] w-full h-full"
