@@ -116,7 +116,14 @@ useEffect(() => {
   const playCelebrationSound = () => {
     setPlaySound(true);
     console.log('🎉 CELEBRATION SOUND! 🎉');
-    setTimeout(() => setPlaySound(false), 1000);
+    
+    // Play the audio file
+    const audio = new Audio('/celebration.mp3'); // Replace 'celebration.mp3' with your actual file name
+    audio.play().catch(error => {
+      console.error('Error playing sound:', error);
+    });
+    
+    setTimeout(() => setPlaySound(false), 4000); // Changed to 4 seconds to match your audio file
   };
 
   // Debug function for button click
@@ -431,7 +438,7 @@ useEffect(() => {
                 
                 <button
                   onClick={() => setStep('feedback')}
-                  className="bg-black hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-300 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm"
+                  className="bg-pink-500 hover:bg-purple-300 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm"
                 >
                   Hope you liked it, got time for feedback?
                 </button>
