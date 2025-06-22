@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 "use client";
 import { useEffect, useState } from "react";
 import { getProjects, Project } from "../../../firebase/getProjects";

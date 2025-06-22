@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import EducationSection from "./components/Education";

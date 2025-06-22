@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import { Project } from "../../../firebase/getProjects";
 import Image from "next/image";
 import { useState, useEffect } from "react";
