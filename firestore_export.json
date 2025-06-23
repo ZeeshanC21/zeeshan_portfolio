@@ -6,12 +6,13 @@
     "phoneNumber": "+919892605318",
     "lastVerifiedAt": "2025-06-22 10:56:01.334000+00:00",
     "lastViewedAt": "2025-06-22 10:56:01.458000+00:00",
-    "name": "Arshad Charolia",
+    "name": "Abba",
     "totalAttempts": 0,
     "otp": "",
     "viewCount": 0,
     "firstViewedAt": "2025-06-22 10:56:01.458000+00:00",
-    "personalMessage": "Hi Dad"
+    "personalMessage": "Hi Dad,\nThis one comes straight from the heart — from your youngest, with all the love in the world.\n\nI’m endlessly grateful for everything you’ve done — not just for me, but for our entire family. For Mom. For my brothers. For your own parents. You’ve carried so much on your shoulders and sacrificed more than we’ll ever truly understand, just to see us smile.\n\nYou are — and always will be — our biggest inspiration. The kind of man I pray I can become one day. The kind of man my brothers look up to. But truthfully, no matter how hard we try, there’s no one who could ever take your place in this world.\n\nYou’ve loved us fiercely, guided us, protected us — and yeah, sure, you’ve scolded us too (but hey, we know it was always out of love). I still remember you cheering for me and bhai at our games, stressing over selections, and yelling “bhaag bhaag!” at Luqman bhai — only for him to get out on 49. *laughs*\n\nYou've laughed with us, cried with us, fought for us.\nThis family, in all its beauty and chaos, wouldn’t be what it is without you at its heart.\n\nMay Allah bless you with endless happiness, peace, and success — in this life and the next.\nJazakallah Khair for everything, Dad.\n\nWith all my love,\nYour youngest",
+    "feedback": ""
   },
   "Zeeshan Charolia": {
     "otpExpiry": 0,
@@ -24,6 +25,23 @@
     "otp": "",
     "viewCount": 0,
     "firstViewedAt": "2025-06-22 09:37:34.876000+00:00",
-    "personalMessage": "Love you"
-  }
+    "personalMessage": "Love you",
+    "feedback": ""
+  },
+  "Lubna Charolia": {
+  "otpExpiry": 0,
+  "lastAttemptAt": "",
+  "viewCounts": 0,
+  "phoneNumber": "+919987736007",
+  "lastVerifiedAt": "",
+  "lastViewedAt": "",
+  "name": "Ammi",
+  "totalAttempts": 0,
+  "otp": "",
+  "viewCount": 0,
+  "firstViewedAt": "",
+  "personalMessage": "Hi Mom,\nYou and Dad complete me — not just as your child, but as a person.\n\nI don’t think there are enough words to express how much you mean to me, Ammi. You’re truly the backbone of our family… my own personal strength.\n\nYour presence lights up every room, Mumma — from your endless laughter to those sweet smiles, even when I tease you for skipping your morning walks. *laughs*\n\nYou’ve done more for us than we’ll ever be able to repay, and no amount of words can truly capture the depth of our gratitude.\n\nMay you always be surrounded by love and joy, with Abba and all of us by your side.\nMay Allah bless you with immense happiness, success, and peace — in this life and the hereafter.\n\nJazakallah Khair for everything, Ammi.\nWith all my love,",
+  "feedback": ""
+}
+
 }
